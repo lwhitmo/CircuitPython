@@ -5,8 +5,24 @@
 
 ### Description
 ### Code
+Link to [the code](https://github.com/lwhitmo/CircuitPython/blob/master/Code/friend.py)
+``` py
+import board
+import neopixel
+
+dot = neopixel.NeoPixel(board.NEOPIXEL, 1)
+dot.brightness = 0.5
+
+print("Make it red!")
+
+while True:
+    dot.fill((255, 0, 255))
+ ```
 ### Evidence
 ### Wiring
+wiring diafram
+
+![image text](image link)
 ### Reflection
 ### Every new project:
 1. Make a GitHub account if you don't have one with your normal school credentials and sign into it.
