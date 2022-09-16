@@ -1,9 +1,11 @@
 # Table of Contents
 * [Neopixel](#Neopixel)
+* [Servo](#Servo)
 
 ## Neopixel
 
 ### Description
+make the board print a color
 ### Code
 Link to [the code](https://github.com/lwhitmo/CircuitPython/blob/master/Code/friend.py)
 ``` py
@@ -19,11 +21,44 @@ while True:
     dot.fill((255, 0, 255))
  ```
 ### Evidence
-### Wiring
-wiring diafram
+
 
 ![image text](image link)
 ### Reflection
+
+
+
+## Servo 
+
+### Description 
+Move servo 180 in a sweeping motion back and forth
+
+### Code
+
+link to [the code](https://github.com/lwhitmo/CircuitPython/blob/master/Code/friend.py)
+``` py
+from adafruit_motor import servo
+import board
+import pwmio
+import time
+
+pwm = pwmio.PWMOut(board.D3, duty_cycle=2 ** 15, frequency=50)
+
+my_servo = servo.Servo(pwm)
+
+while True:
+    for angle in range(0, 180, 10):  # 0 - 180 degrees, 5 degrees at a time.
+        my_servo.angle = angle
+        time.sleep(0.05)
+    for angle in range(180, 0, -10): # 180 - 0 degrees, 5 degrees at a time.
+        my_servo.angle = angle
+        time.sleep(0.05)
+        
+
+```
+
+### Evidence
+
 ### Every new project:
 1. Make a GitHub account if you don't have one with your normal school credentials and sign into it.
 2. Click the big green Use This Template button at the top of this page.
