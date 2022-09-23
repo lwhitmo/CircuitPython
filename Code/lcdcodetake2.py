@@ -15,7 +15,7 @@ btn.pull = Pull.UP
 btn2.direction = Direction.INPUT
 btn2.pull = Pull.UP
 # some LCDs are 0x3f... some are 0x27.
-lcd = LCD(I2CPCF8574Interface(i2c, 0x3f), num_rows=2, num_cols=16)
+lcd = LCD(I2CPCF8574Interface(i2c, 0x27), num_rows=2, num_cols=16)
 cur_state = True
 prev_state = True
 buttonPress = 0
