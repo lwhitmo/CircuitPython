@@ -6,7 +6,7 @@ from lcd.lcd import LCD
 from lcd.i2c_pcf8574_interface import I2CPCF8574Interface
 from digitalio import DigitalInOut, Direction, Pull
 
-# get and i2c object
+# get and i2c object!!
 i2c = board.I2C()
 btn = DigitalInOut(board.D3)
 btn2 = DigitalInOut(board.D2)
