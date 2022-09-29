@@ -156,6 +156,7 @@ Code goes here
 ```
 
 ### Evidence
+![servo_go_round](https://github.com/lwhitmo/CircuitPython/blob/master/Images/servo%20gif.gif)
 
 Pictures / Gifs of your work should go here.  You need to communicate what your thing does.
 
