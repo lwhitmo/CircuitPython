@@ -108,7 +108,6 @@ This repository will actually serve as a aid to help you get started with your o
 ### Description & Code
 make the board print a color
 
-Here's how you make code look like code:
 
 ``` py
 import board
@@ -151,19 +150,34 @@ What went wrong / was challenging, how'd you figure it out, and what did you lea
 ### Description & Code
 
 ```python
-Code goes here
+from adafruit_motor import servo
+import board
+import pwmio
+import time
+
+pwm = pwmio.PWMOut(board.D3, duty_cycle=2 ** 15, frequency=50)
+
+my_servo = servo.Servo(pwm)
+
+while True:
+    for angle in range(0, 180, 10):  # 0 - 180 degrees, 5 degrees at a time.
+        my_servo.angle = angle
+        time.sleep(0.05)
+    for angle in range(180, 0, -10): # 180 - 0 degrees, 5 degrees at a time.
+        my_servo.angle = angle
+        time.sleep(0.05)
+        
 
 ```
 
 ### Evidence
 ![servo_go_round](https://github.com/lwhitmo/CircuitPython/blob/master/Images/servo%20gif.gif)
 
-Pictures / Gifs of your work should go here.  You need to communicate what your thing does.
 
 ### Wiring
-
+![servo_wiring](https://github.com/lwhitmo/CircuitPython/blob/master/Images/servo-motor-with-arduino-uno-wiring-diagram-schematic-circuit-tutorial-featured-image.png)
 ### Reflection
-
+This is not the full version of the assignment. This current state signifies half of the assignment, which allows the servo motor to perform a sweeping motion back and forth 180 degrees. 
 
 
 
