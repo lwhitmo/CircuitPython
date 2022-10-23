@@ -1,97 +1,3 @@
-# Table of Contents
-* [Neopixel](#Neopixel)
-* [Servo](#Servo)
-
-## Neopixel
-
-### Description
-make the board print a color
-### Code
-Link to [the code](https://github.com/lwhitmo/CircuitPython/blob/master/Code/friend.py)
-``` py
-import board
-import neopixel
-
-dot = neopixel.NeoPixel(board.NEOPIXEL, 1)
-dot.brightness = 0.5
-
-print("Make it red!")
-
-while True:
-    dot.fill((255, 0, 255))
- ```
-### Evidence
-
-
-![image text](image link)
-### Reflection
-
-
-
-## Servo 
-
-### Description 
-Move servo 180 in a sweeping motion back and forth
-
-### Code
-
-link to [the code](https://github.com/lwhitmo/CircuitPython/blob/master/Code/friend.py)
-``` py
-from adafruit_motor import servo
-import board
-import pwmio
-import time
-
-pwm = pwmio.PWMOut(board.D3, duty_cycle=2 ** 15, frequency=50)
-
-my_servo = servo.Servo(pwm)
-
-while True:
-    for angle in range(0, 180, 10):  # 0 - 180 degrees, 5 degrees at a time.
-        my_servo.angle = angle
-        time.sleep(0.05)
-    for angle in range(180, 0, -10): # 180 - 0 degrees, 5 degrees at a time.
-        my_servo.angle = angle
-        time.sleep(0.05)
-        
-
-```
-
-### Evidence
-
-### Every new project:
-1. Make a GitHub account if you don't have one with your normal school credentials and sign into it.
-2. Click the big green Use This Template button at the top of this page.
-3. Name the new repository something appropriate to the purpose of your project (Your first one should probably be named `CircuitPython`).
-4. Hit "Create repository from template." (The default settings should be fine.)
-5. Open VS Code on your machine. Click Clone Repository.
-6. Paste in the link to the new repository you've just created from the template and hit enter.
-7. For the location, select the "STUDENT" drive if you have it or the document folder if you don't.
-8. Hit "Open Cloned Directory."
-9. Install the reccomended extensions when you get that popup in the lower right corner.
-### To commit from VS Code:
-1. Go to the little branch icon in the left bar of VS Code.
-2. Click the + icon next  to the files you want to commit.
-3. Write a message that descibes your changes in the "Message" box and hit commit.
-4. If you get an error about user.name and user.email, see the next section.
-5. Click the "Sync changes" button.
-### If you get an error about user.name and user.email
-1. In VS Code, hit `` Ctrl+Shift+` ``
-2. Filling in your actual information, run the following commands one line at a time. The paste shortcut is `Ctrl+V` or you can right click then hit paste. Spelling must match exactly:
-```
-git config --global user.name YOURUSERNAME
-git config --global user.email YOURSCHOOLEMAIL
-```
-3. Return to step 3 of the previous section.
-
-
-
-
-
-
-
-
-
 
 # CircuitPython
 This repository will actually serve as a aid to help you get started with your own template.  You should copy the raw form of this readme into your own, and use this template to write your own.  If you want to draw inspiration from other classmates, feel free to check [this directory of all students!](https://github.com/chssigma/Class_Accounts).
@@ -100,7 +6,7 @@ This repository will actually serve as a aid to help you get started with your o
 * [Hello_CircuitPython](#Hello_CircuitPython)
 * [CircuitPython_Servo](#CircuitPython_Servo)
 * [CircuitPython_LCD](#CircuitPython_LCD)
-* [NextAssignmentGoesHere](#NextAssignment)
+* [CircuitPython Distance Sensor](#CircuitPython_Distance_Sensor)
 ---
 
 ## Hello_CircuitPython
@@ -108,7 +14,7 @@ This repository will actually serve as a aid to help you get started with your o
 ### Description & Code
 make the board print a color
 
-
+Link to [the code](https://github.com/lwhitmo/CircuitPython/blob/master/Code/friend.py)
 ``` py
 import board
 import neopixel
@@ -148,7 +54,9 @@ What went wrong / was challenging, how'd you figure it out, and what did you lea
 ## CircuitPython_Servo
 
 ### Description & Code
+make the servo perform a sweeping mtion back and forth 180 degrees
 
+link to [the code](https://github.com/lwhitmo/CircuitPython/blob/master/Code/friend.py)
 ```python
 from adafruit_motor import servo
 import board
@@ -212,3 +120,111 @@ Code goes here
 ```
 
 ### Evidence
+
+## CircuitPython_Distance_Sensor
+
+### Description & Code
+
+```python
+#credit goes to Graham GS
+#original code https://github.com/VeganPorkChop/CircutPython/blob/master/Sensorthing.py
+
+
+# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
+# SPDX-License-Identifier: MIT
+import digitalio
+import simpleio 
+import time
+import board
+import adafruit_hcsr04
+import neopixel 
+from board import *
+
+sonar = adafruit_hcsr04.HCSR04(trigger_pin=board.D3, echo_pin=board.D2)
+Kaz = neopixel.NeoPixel(board.NEOPIXEL, 1)#connecting the neopixel on the board to the code
+Kaz.brightness = 0.1  #setting the brightness of the light, from 0-1 brightness
+KazOutput = 0
+Red = 0
+Green = 0
+Blue = 0
+
+while True:
+    try:
+        cm = sonar.distance
+        print((sonar.distance, Red, Green, Blue))
+        time.sleep(0.02)
+        if cm < 5:
+            Blue = 0
+            Red = 255
+            Kaz.fill((Red, 0, 0))#setting the color with RGB values
+        if cm > 5 and cm < 10:
+            Green = 0
+            Red = simpleio.map_range(cm, 5.1, 10, 255, 0)
+            Blue = simpleio.map_range(Red, 0, 255, 255, 0)
+            Kaz.fill((Red, Green, Blue))
+        else:
+            Blue = simpleio.map_range(cm, 10.1, 20, 255, 0)
+            Green = simpleio.map_range(Blue, 0, 255, 255, 0)
+            Kaz.fill((0, Green, Blue))#setting the color with RGB values
+    except RuntimeError:
+        print("Retrying!")
+    time.sleep(0.1)
+
+```
+
+### Evidence
+
+Pictures / Gifs of your work should go here.  You need to communicate what your thing does.
+
+### Wiring
+
+### Reflection
+
+
+
+
+
+## NextAssignment
+
+### Description & Code
+
+```python
+Code goes here
+
+```
+
+### Evidence
+
+
+
+
+### Every new project:
+1. Make a GitHub account if you don't have one with your normal school credentials and sign into it.
+2. Click the big green Use This Template button at the top of this page.
+3. Name the new repository something appropriate to the purpose of your project (Your first one should probably be named `CircuitPython`).
+4. Hit "Create repository from template." (The default settings should be fine.)
+5. Open VS Code on your machine. Click Clone Repository.
+6. Paste in the link to the new repository you've just created from the template and hit enter.
+7. For the location, select the "STUDENT" drive if you have it or the document folder if you don't.
+8. Hit "Open Cloned Directory."
+9. Install the reccomended extensions when you get that popup in the lower right corner.
+### To commit from VS Code:
+1. Go to the little branch icon in the left bar of VS Code.
+2. Click the + icon next  to the files you want to commit.
+3. Write a message that descibes your changes in the "Message" box and hit commit.
+4. If you get an error about user.name and user.email, see the next section.
+5. Click the "Sync changes" button.
+### If you get an error about user.name and user.email
+1. In VS Code, hit `` Ctrl+Shift+` ``
+2. Filling in your actual information, run the following commands one line at a time. The paste shortcut is `Ctrl+V` or you can right click then hit paste. Spelling must match exactly:
+```
+git config --global user.name YOURUSERNAME
+git config --global user.email YOURSCHOOLEMAIL
+```
+3. Return to step 3 of the previous section.
+
+
+
+
+
+
