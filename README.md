@@ -1,6 +1,6 @@
 
 # CircuitPython
-This repository will actually serve as a aid to help you get started with your own template.  You should copy the raw form of this readme into your own, and use this template to write your own.  If you want to draw inspiration from other classmates, feel free to check [this directory of all students!](https://github.com/chssigma/Class_Accounts).
+Hello, This repository will actually serve as a aid to help you get started with your own template.  You should copy the raw form of this readme into your own, and use this template to write your own.  If you want to draw inspiration from other classmates, feel free to check [this directory of all students!](https://github.com/chssigma/Class_Accounts).
 ## Table of Contents
 * [Table of Contents](#TableOfContents)
 * [Hello_CircuitPython](#Hello_CircuitPython)
@@ -32,22 +32,17 @@ while True:
 ### Evidence
 
 
-![spinningMetro_Optimized](https://user-images.githubusercontent.com/54641488/192549584-18285130-2e3b-4631-8005-0792c2942f73.gif)
+![Look at it go!! So many random colors...](https://github.com/jmuss07/Circuit-Python/blob/main/Images/Random_Color.gif?raw=true)
 
-
-And here is how you should give image credit to someone, if you use their work:
-
-Image credit goes to [Rick A](https://www.youtube.com/watch?v=dQw4w9WgXcQ&scrlybrkr=8931d0bc)
+image credit goes to [josie muss](https://github.com/jmuss07)
 
 
 
-### Wiring
-Make an account with your google ID at [tinkercad.com](https://www.tinkercad.com/learn/circuits), and use "TinkerCad Circuits to make a wiring diagram."  It's really easy!  
-Then post an image here.   [here's a quick tutorial for all markdown code, like making links](https://guides.github.com/features/mastering-markdown/)
+
+
 
 ### Reflection
-What went wrong / was challenging, how'd you figure it out, and what did you learn from that experience?  Your ultimate goal for the reflection is to pass on knowledge that will make this assignment better or easier for the next person.
-
+Make sure that the brightness on the Neopixel does not exceed 0.5 or it will hurt the eyeballs. You can use a [color picker](https://htmlcolorcodes.com/) to find pleasant colors for the display.
 
 
 
@@ -84,6 +79,8 @@ while True:
 
 ### Wiring
 ![servo_wiring](https://github.com/lwhitmo/CircuitPython/blob/master/Images/servo-motor-with-arduino-uno-wiring-diagram-schematic-circuit-tutorial-featured-image.png)
+
+image credit goes to internet
 ### Reflection
 This is not the full version of the assignment. This current state signifies half of the assignment, which allows the servo motor to perform a sweeping motion back and forth 180 degrees. 
 
@@ -94,7 +91,58 @@ This is not the full version of the assignment. This current state signifies hal
 ### Description & Code
 
 ```python
-Code goes here
+#original code credits go to Graham GS view linked code https://github.com/VeganPorkChop/CircutPython/blob/master/LCD.py 
+
+import board
+import time
+from lcd.lcd import LCD
+from lcd.i2c_pcf8574_interface import I2CPCF8574Interface
+from digitalio import DigitalInOut, Direction, Pull
+
+# get and i2c object
+i2c = board.I2C()
+btn = DigitalInOut(board.D3)
+btn2 = DigitalInOut(board.D2)
+btn.direction = Direction.INPUT
+btn.pull = Pull.UP
+btn2.direction = Direction.INPUT
+btn2.pull = Pull.UP
+# some LCDs are 0x3f... some are 0x27.
+lcd = LCD(I2CPCF8574Interface(i2c, 0x27), num_rows=2, num_cols=16)
+cur_state = True
+prev_state = True
+cur_state2 = True
+prev_state2 = True
+buttonPress = 0
+ 
+while True:
+    while btn2.value == True:
+        cur_state = btn.value
+        if cur_state != prev_state:
+            if not cur_state:
+                buttonPress = buttonPress + 1
+                lcd.clear()
+                lcd.set_cursor_pos(0,0)
+                lcd.print(str(buttonPress))
+            else:
+                lcd.clear()
+                lcd.set_cursor_pos(0,0)
+                lcd.print(str(buttonPress))
+                print(buttonPress)
+        prev_state = cur_state
+    else:
+        cur_state2 = btn.value
+        if cur_state2 != prev_state2:
+            if not cur_state2:
+                buttonPress = buttonPress - 1
+                lcd.clear()
+                lcd.set_cursor_pos(0,0)
+                lcd.print(str(buttonPress))
+            else:
+                lcd.clear()
+                lcd.set_cursor_pos(0,0)
+                lcd.print(str(buttonPress))
+        prev_state2 = cur_state2
 
 ```
 
@@ -104,21 +152,11 @@ Code goes here
 ### Wiring
 
 ### Reflection
+When doing this assignment again, if the lcd is not printing, first check if the proper LCD is in place in the code. It could be 
 
 
 
 
-
-## NextAssignment
-
-### Description & Code
-
-```python
-Code goes here
-
-```
-
-### Evidence
 
 ## CircuitPython_Distance_Sensor
 
@@ -172,57 +210,16 @@ while True:
 ```
 
 ### Evidence
+![Gross Little GIF](https://github.com/inovotn04/CircuitPython/blob/main/Images/DistanceSensorEvidence.gif?raw=true)
 
-Pictures / Gifs of your work should go here.  You need to communicate what your thing does.
+image credit goes to [ian novotne](https://github.com/inovotn04/CircuitPython)
 
 ### Wiring
+<img src="https://github.com/Jhouse53/CircuitPython/blob/main/GIF%20and%20Images/UltraSonicSensor%20wiring.PNG?raw=true" width="400">
 
+Image credit goes to [Benton House](https://github.com/Jhouse53/CircuitPython)
 ### Reflection
-
-
-
-
-
-## NextAssignment
-
-### Description & Code
-
-```python
-Code goes here
-
-```
-
-### Evidence
-
-
-
-
-### Every new project:
-1. Make a GitHub account if you don't have one with your normal school credentials and sign into it.
-2. Click the big green Use This Template button at the top of this page.
-3. Name the new repository something appropriate to the purpose of your project (Your first one should probably be named `CircuitPython`).
-4. Hit "Create repository from template." (The default settings should be fine.)
-5. Open VS Code on your machine. Click Clone Repository.
-6. Paste in the link to the new repository you've just created from the template and hit enter.
-7. For the location, select the "STUDENT" drive if you have it or the document folder if you don't.
-8. Hit "Open Cloned Directory."
-9. Install the reccomended extensions when you get that popup in the lower right corner.
-### To commit from VS Code:
-1. Go to the little branch icon in the left bar of VS Code.
-2. Click the + icon next  to the files you want to commit.
-3. Write a message that descibes your changes in the "Message" box and hit commit.
-4. If you get an error about user.name and user.email, see the next section.
-5. Click the "Sync changes" button.
-### If you get an error about user.name and user.email
-1. In VS Code, hit `` Ctrl+Shift+` ``
-2. Filling in your actual information, run the following commands one line at a time. The paste shortcut is `Ctrl+V` or you can right click then hit paste. Spelling must match exactly:
-```
-git config --global user.name YOURUSERNAME
-git config --global user.email YOURSCHOOLEMAIL
-```
-3. Return to step 3 of the previous section.
-
-
+when using the uultrasonic sensor it is ipmortant to not use a see through object or else the coordinates will get all wonky.
 
 
 
