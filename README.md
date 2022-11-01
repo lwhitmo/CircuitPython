@@ -7,6 +7,7 @@ Hello, This repository will actually serve as a aid to help you get started with
 * [CircuitPython_Servo](#CircuitPython_Servo)
 * [CircuitPython_LCD](#CircuitPython_LCD)
 * [CircuitPython Distance Sensor](#CircuitPython_Distance_Sensor)
+* [Motor Control](#MotorControl)
 ---
 
 ## Hello_CircuitPython
@@ -221,6 +222,13 @@ Image credit goes to [Benton House](https://github.com/Jhouse53/CircuitPython)
 ### Reflection
 when using the uultrasonic sensor it is ipmortant to not use a see through object or else the coordinates will get all wonky.
 
+## MotorControl
 
+### Description & Code
 
+### Evidence
+
+### Wiring
+
+### Reflection
 
