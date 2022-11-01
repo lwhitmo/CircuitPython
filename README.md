@@ -224,7 +224,11 @@ when using the uultrasonic sensor it is ipmortant to not use a see through objec
 
 ## MotorControl
 
-### Description & Code
+### Description 
+Wire up a 6v battery pack to this circuit w/ a motor.
+Code something to make the motor speed up and slow down, based on input from a potentiometer.
+ 
+### Codee
 
 ### Evidence
 
