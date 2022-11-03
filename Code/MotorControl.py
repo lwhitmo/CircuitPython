@@ -1,4 +1,4 @@
-# orginial code credit goes to Cyrus Wyatt
+# orginial code credit goes to Cyrus Wyatt.
 
 import time
 from time import sleep
