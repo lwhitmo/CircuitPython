@@ -227,7 +227,9 @@ when using the uultrasonic sensor it is ipmortant to not use a see through objec
 ### Description & Code
 
 ### Evidence
+![cyrus's_gif](https://github.com/cwyatt29/Engineering_3_Notebook/blob/master/Images/ezgif.com-gif-maker.gif)
 
+image credit goes to [cyrus wyatt](https://github.com/cwyatt29) 
 ### Wiring
 ![wiring image motor control](https://github.com/lwhitmo/CircuitPython/blob/master/Images/Screenshot%202022-11-01%20115847.png)
 ### Reflection
