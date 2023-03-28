@@ -8,6 +8,9 @@ Hello, This repository will actually serve as a aid to help you get started with
 * [CircuitPython_LCD](#CircuitPython_LCD)
 * [CircuitPython Distance Sensor](#CircuitPython_Distance_Sensor)
 * [Motor Control](#MotorControl)
+* [Temperature Sensor](#Temperature_Sensor)
+* [Rotary Encoder](#Rotary_Encoder)
+* [Photointerrupter](#Photointerrupter)
 ---
  
 ## Hello_CircuitPython
@@ -337,6 +340,8 @@ This assignment changes traffic lights using a rotary encoder and displays the s
 
 ### Code
 ```python
+#original code goes to Hazel Chonklin
+
 import board
 from lcd.lcd import LCD # lcd libraries
 from lcd.i2c_pcf8574_interface import I2CPCF8574Interface
@@ -422,6 +427,8 @@ This assignment displays the number of times a photointerrupter is interrupted o
 
 ### Code
 ```python
+# OG code is hazel's
+
 import board
 from lcd.lcd import LCD # lcd liraries
 from lcd.i2c_pcf8574_interface import I2CPCF8574Interface
