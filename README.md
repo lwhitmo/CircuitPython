@@ -327,12 +327,7 @@ Video of LCD displaying changing temperature sensor values (video credit goes to
 Wiring for Temperature Sensor
 
 ### Reflection
-Hazel has very sound facts, so I stoled it for research pourposes.
-
-The hardest part of this assignment was finding the temperature values from the sensor. There isn't a library for the temperature sensor so I declared the sensor as an analog pin and found the values using analogio. The values I was getting were much too high so I mapped the values from 0 - 65535 to 32 - 212, which is the range for Fahrenheit. It was also important to remember that the SDA and SCL pins on the LCD screen go to the SDA and SCL pins on the Metro.
-
-
-
+Finding the temperature measurements from the sensor proved to be the most difficult aspect of this assignment. Since there is no library for the temperature sensor, it was most helpful to declare it an analog pin and used analogio to find the data. It is also important to keep in mind that the SDA and SCL pins on the LCD screen correspond to the SDA and SCL pins on the Metro was also crucial.
 
 
 ## Rotary_Encoder
@@ -415,10 +410,8 @@ Video of rotary encoder selecting traffic states displayed on an LCD and turning
 Wiring for Rotary Encoder (image credit goes to my friend Honklin)
 
 ### Reflection
-The best facts coming from Honklin, once again.
 
-In this assignment, it was very important to find the library for rotary encoders. Rotaryio lets the Metro communicate with both the button and the potentiometer on the rotary encoder, but they must be declared separately. The hardest part of this assignment was modifying the encoder position so that it could be used for the LEDs. I used % to find the remainder of 20 in order to fix the continuous rotation position, then I checked which third of the circle the encoder was in.
-
+Finding the library for rotary encoders was crucial for this assignment.To set the continuous rotation position, I used% to get the last 20 in the equation, after which I looked to see which third of the circle the encoder was in.
 
 
 
@@ -476,6 +469,4 @@ Video of LCD displaying the number of interrupts every 4 seconds (video credit g
 Wiring for Photointerrupter (image credit goes to my friend Honklin)
 
 ### Reflection
-Honk the Conk got the FAX.
-
-I couldn't find a library for the photointerrupter so I declared it as a digital input that would send input similar to how a button would. I also needed to use monotonic() instead of sleep() to delay reprinting the LCD because sleep() stops the code and therefore wouldn't recognize when it is interrupted. However, monotonic() records the current time, so comparing the time back to the old time throughout the code will allow it to reprint the LCD every 4 seconds and also recognize any interruptions. I also found that I needed to check the photointerrupter in a loop and only increase the total after it had turned false because if I do if interrupted, the code keeps counting until it is uninterrupted.
+Since I was unable to locate a library for the photointerrupter, I designated it to be a digital input that would function similarly to a button in terms of sending input. Additionally, I discovered that if I increase the total before the photointerrupter has turned false, the code would continue counting until it is uninterrupted, thus I had to check the photointerrupter in a loop instead.
