@@ -98,63 +98,57 @@ Your Metro should alternate between counting up and counting down when you touch
 ### Code
  
 ```python
-#original code credits go to Graham GS view linked code https://github.com/VeganPorkChop/CircutPython/blob/master/LCD.py
+#original code credits go to Hazel Conklin view linked code https://github.com/honklin/Circuit-Python?scrlybrkr=9c8e9ad1#LCD
  
 import board
 import time
 from lcd.lcd import LCD
 from lcd.i2c_pcf8574_interface import I2CPCF8574Interface
 from digitalio import DigitalInOut, Direction, Pull
- 
-# get and i2c object
+
 i2c = board.I2C()
-btn = DigitalInOut(board.D3)
-btn2 = DigitalInOut(board.D2)
-btn.direction = Direction.INPUT
-btn.pull = Pull.UP
-btn2.direction = Direction.INPUT
-btn2.pull = Pull.UP
-# some LCDs are 0x3f... some are 0x27.
-lcd = LCD(I2CPCF8574Interface(i2c, 0x27), num_rows=2, num_cols=16)
-cur_state = True
-prev_state = True
-cur_state2 = True
-prev_state2 = True
-buttonPress = 0
- 
+lcd = LCD(I2CPCF8574Interface(i2c, 0x3f), num_rows=2, num_cols=16)
+
+up = DigitalInOut(board.D12) # up button
+up.pull = Pull.UP
+up.direction = Direction.INPUT
+
+down = DigitalInOut(board.D13) # down button
+down.pull = Pull.UP
+down.direction = Direction.INPUT
+
+count = 0
+precount = -1 # placeholder for comparison
+direction = " "
+space = 0 # lcd spacing
+
 while True:
-    while btn2.value == True:
-        cur_state = btn.value
-        if cur_state != prev_state:
-            if not cur_state:
-                buttonPress = buttonPress + 1
-                lcd.clear()
-                lcd.set_cursor_pos(0,0)
-                lcd.print(str(buttonPress))
-            else:
-                lcd.clear()
-                lcd.set_cursor_pos(0,0)
-                lcd.print(str(buttonPress))
-                print(buttonPress)
-        prev_state = cur_state
-    else:
-        cur_state2 = btn.value
-        if cur_state2 != prev_state2:
-            if not cur_state2:
-                buttonPress = buttonPress - 1
-                lcd.clear()
-                lcd.set_cursor_pos(0,0)
-                lcd.print(str(buttonPress))
-            else:
-                lcd.clear()
-                lcd.set_cursor_pos(0,0)
-                lcd.print(str(buttonPress))
-        prev_state2 = cur_state2
+    precount = count
+    if (up.value): # counts up
+        print("up")
+        while (up.value):
+            direction = "Up:"
+        count += 1
+        space = 4
+    elif (down.value): # counts down
+        print("down")
+        while (down.value):
+            direction = "Down:"
+        count -= 1
+        space = 6
+    if (count != precount): # prevents holding counts
+        lcd.clear()
+        lcd.set_cursor_pos(0,0)
+        lcd.print(direction) # print direction
+        lcd.set_cursor_pos(0,space)
+        lcd.print(str(count)) # print count
+    time.sleep(.01)
  
 ```
  
 ### Evidence
-![toggle counter lcd](https://drive.google.com/file/d/1Kqoc5Ekqh7wrwV3bBTz1TlqLQrXzkRiQ/view)
+https://user-images.githubusercontent.com/121810694/217867370-0524ab2c-ccad-4789-a559-7e34115aeb3d.GIF
+video credit goes to Haze in a Maze [hazel conklin](https://github.com/honklin/Circuit-Python/blob/main/README.md)
  
 ### Wiring
  
