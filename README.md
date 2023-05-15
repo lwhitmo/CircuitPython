@@ -92,7 +92,10 @@ This is not the full version of the assignment. This current state signifies hal
  
 ## CircuitPython_LCD
  
-### Description & Code
+### Description 
+Make two inputs and use your LCD screen as an output device. Your Metro will count when one of the inputs is tripped, and the LCD will show the count. 
+Your Metro should alternate between counting up and counting down when you touch the other input. The LCD should additionally show the count direction. 
+### Code
  
 ```python
 #original code credits go to Graham GS view linked code https://github.com/VeganPorkChop/CircutPython/blob/master/LCD.py
@@ -164,7 +167,10 @@ When doing this assignment again, if the lcd is not printing, first check if the
  
 ## CircuitPython_Distance_Sensor
  
-### Description & Code
+### Description
+Print out the measurement of the distance to an object in cm on your serial display or LCD using the HC-SR04. Make the neopixel turn red if your object is less than 5 cm away, blue if it is between 5 and 20 cm away, and green if it is more than 20 cm away. The on-board neopixel's color should gradually change to match the distance.
+
+### Code
  
 ```python
 #credit goes to Graham GS
@@ -226,8 +232,10 @@ Image credit goes to [Benton House](https://github.com/Jhouse53/CircuitPython)
 when using the uultrasonic sensor it is ipmortant to not use a see through object or else the coordinates will get all wonky.
  
 ## MotorControl
+Connect a motor and a 6-volt battery pack to this circuit. The motor can be programmed to accelerate and decelerate in response to input from a potentiometer.
+### Description 
 
-### Description & Code
+### Code
 ```python
 # orginial code credit goes to Cyrus Wyatt
  
