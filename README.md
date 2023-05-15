@@ -267,7 +267,7 @@ image credit goes to [cyrus wyatt](https://github.com/cwyatt29)
 ![wiring image motor control](https://github.com/lwhitmo/CircuitPython/blob/master/Images/Screenshot%202022-11-01%20115847.png)
 ### Reflection
 
-
+Converting the values from the potentiometer value range to the motor value range was crucial for this project. 
 
 ## Temperature_Sensor
 
